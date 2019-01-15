@@ -1,9 +1,65 @@
 @import './../../style/default.less';
 .home-wrap{
+    width: 100%;
     background-color: @colorM;
-    height: calc(62vh);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: @fontG;
+    height: calc(~"100vh - 50px");
+    font-size: @font14;
+}
+
+.charts-btn{
+    position: fixed;
+    bottom: 0;
+    left: 115px;
+}
+
+.infos-btn{
+    position: fixed;
+    left: 340px;
+    top: 100px;
+}
+
+.map-tip-btn{
+    position: fixed;
+    right: 40px;
+    top: 100px;
+    width: 38px;
+    height: 30px;
+    background: url("../../images/homePage/tuchengcaozuo.png") no-repeat;
+    background-size: 100% 100%;
+    border: none;
+    border-radius: 0;
+    &:hover, &:focus, &:active, &.active{
+        background: url("../../images/homePage/tuchengcaozuo.png") no-repeat;
+        background-size: 100% 100%;  
+    }
+}
+
+.map-tip-wrap{
+    .ant-popover-arrow{
+        background: #2c4161
+    }
+    .ant-popover-inner{
+        background: #1F2A3E;
+        box-shadow: 0px 0px 20px 5px #2c4161 inset;
+        .map-tip-content{
+            .map-tip-line{
+                margin: 10px 0;
+                color: #eaac65;
+                .ant-switch{
+                    float: right;
+                }
+                &:first-child{
+                    margin-top: 0
+                }
+                &:last-child{
+                    margin-bottom: 0
+                }
+            }
+            .ant-radio-wrapper{
+                margin-bottom: 5px;
+                color: @colorM;
+            }
+        } 
+
+    }
 }

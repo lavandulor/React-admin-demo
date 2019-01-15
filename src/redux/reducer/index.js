@@ -3,7 +3,8 @@
  */
 import { type } from './../action'
 const initialState = {
-    menuName: '首页'
+    menuName: '首页',
+    activeId: '0',
 }
 
 export default (state = initialState, action) => {
@@ -13,6 +14,11 @@ export default (state = initialState, action) => {
                 ...state,
                 menuName: action.menuName
             }
+        case type.LIST_ACTIVE_ID:
+            return {
+                ...state,
+                activeId: action.activeId
+            }    
         default:
             return {...state}
     }

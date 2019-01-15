@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .rollBox{
+            margin: 50px auto;
+            padding: 0 20px;
+            width: 300px;
+            height: 310px;
+            background: #FFF;
+            overflow: hidden;
+            border: 1px solid #666;
+        }
+        .rollBox2{
+            margin: 50px auto;
+            padding: 20px 0;
+            width: 300px;
+            height: 31px;
+            background: #FFF;
+            overflow: hidden;
+            border: 1px solid #666;
+        }
+        .rollEl{
+            /*margin: 20px;*/
+            width: 300px;
+        }
+        .rollEl li{
+            height: 30px;
+            line-height: 30px;
+            border-bottom: 1px dotted #999;
+            color: #555;
+        }
+        .rollEl2{
+            width: 300px;
+            height: 31px;
+            font-size: 0;
+        }
+        .rollEl2 li{
+            display: inline-block;
+            padding: 0 20px;
+            height: 30px;
+            width: 260px;
+            line-height: 30px;
+            border-bottom: 1px dotted #999;
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var rollBox = document.getElementsByClassName('rollBox')[0];
+            var rollEl = rollBox.getElementsByClassName('rollEl')[0];
+            //var rollBox2 = document.getElementsByClassName('rollBox2')[0];
+            //var rollEl2 = rollBox2.getElementsByClassName('rollEl2')[0];
+
+            var rollElMove = new RollAnimate(rollBox,rollEl,'up',3000);
+            //var rollElMove2 = new RollAnimate(rollBox2,rollEl2,'left',4000);
+        }
+
+        function RollAnimate(parent,rollEl,dir,rillTime){
+            this.parent = parent;
+            this.rollEl = rollEl;
+            this.dir = dir;
+            this.rillTime = rillTime;
+            this.elMove();
+        }
+        RollAnimate.prototype = {
+            //获取行间样式
+            getStyle:function(obj,attr){
+              return  obj.attr = obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+            },
+            //滚动
+            elMove:function(){
+                //获取要滚动元素当前滚动的值
+                var rollChild = this.rollEl.getElementsByClassName('rollChild');
+                var len = rollChild.length;
+                var iTaget = 0;
+                //获取滚动元素外框的高度
+                var rollBoxSize = 0;
+                var rollElSize = 0;
+                //每次滚动的距离
+                var rollNum = 0;
+                //获取滚动元素滚动前的子元素
+                var sHtml = this.rollEl.innerHTML;
+                var _this = this;
+                //获取单次滚动的数据
+                if(this.dir == 'up') {
+                    rollBoxSize = _this.parent.offsetHeight;
+                    rollNum = parseInt(rollChild[0].offsetHeight);
+                    rollElSize = rollNum*len;
+                }else if(this.dir == 'left'){
+                    rollBoxSize = _this.parent.offsetWidth;
+                    rollNum = parseInt(rollChild[0].offsetWidth);
+                    rollElSize = rollNum*len
+                    this.rollEl.style.width = rollElSize + 'px';
+//                    rollElSize = parseInt(_this.rollEl.offsetWidth);
+                }
+
+                setInterval(function () {
+                    //修正滚动元素
+                    if((rollElSize - Math.abs(iTaget)) <= parseInt(rollBoxSize)){
+                        //如果滚到最后，增加滚动元素的子元素
+                        _this.rollEl.innerHTML += sHtml;
+
+                        //修改滚动元素高度,因为向上滚动，元素的高度会自适应，所有向上滚动时不需要设置
+                        rollElSize *= 2;
+                       if(_this.dir == 'left'){
+                            _this.rollEl.style.width = rollElSize + 'px';
+                       }
+
+                    }else if(rollElSize/2 <= Math.abs(iTaget)){
+                        //当所有的都滚动完成后，修正margin-top值、滚动的值还有滚动元素的子元素数量
+
+                        rollElSize /= 2; //修改滚动元素高度
+
+                        if(_this.dir == 'up'){
+
+                            _this.rollEl.style.marginTop = 0;
+
+                        }else if(_this.dir == 'left'){
+
+                            _this.rollEl.style.marginLeft = 0;
+                            _this.rollEl.style.width = rollElSize + 'px';
+
+                        }
+
+                        iTaget = 0;
+                        _this.rollEl.innerHTML = sHtml;
+                    }
+                    //增加每次滚动的量
+                    iTaget -= rollNum;
+
+                    //执行单次滚动
+                    if(_this.dir == 'up'){
+
+                        _this.animate('margin-top',iTaget);
+
+                    }else if(_this.dir == 'left'){
+
+                        _this.animate('margin-left',iTaget);
+
+                    }
+                },_this.rillTime);
+            },
+            //单次滚动
+            animate: function (attr,iTaget) {
+                var _this = this;
+
+                clearInterval(this.rollEl.timer);
+
+                this.rollEl.timer = setInterval(function () {
+                    //计算速度
+                    var speed =(iTaget - parseInt(_this.getStyle(_this.rollEl,attr)))/8 ;
+                    //判断速度是正还是负，正速度向上取整，负的向下取整
+                    speed = speed > 0 ? Math.ceil(speed):Math.floor(speed)
+                    var dist = parseInt(_this.getStyle(_this.rollEl,attr));
+                    if(dist == iTaget){
+                        clearInterval(_this.rollEl.timer);
+                    }else{
+                        dist +=speed;
+                        _this.rollEl.style[attr] = dist + 'px';
+                    }
+                },50)
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="rollBox">
+    <ul class="rollEl">
+        <li class="rollChild">文字1</li>
+        <li class="rollChild">文字2</li>
+        <li class="rollChild">文字3</li>
+        <li class="rollChild">文字4</li>
+        <li class="rollChild">文字5</li>
+        <li class="rollChild">文字6</li>
+        <li class="rollChild">文字7</li>
+        <li class="rollChild">文字8</li>
+        <li class="rollChild">文字9</li>
+        <li class="rollChild">文字10</li>
+        <li class="rollChild">文字5</li>
+        <li class="rollChild" style="color: #ff0000">文字6</li>
+    </ul>
+</div>
+<!-- <div class="rollBox2">
+    <ul class="rollEl2" style="width: 900px">
+        <li class="rollChild">文字1</li>
+        <li class="rollChild">文字2</li>
+        <li class="rollChild" style="color: #ff0000">文字6</li>
+    </ul>
+</div> -->
+</body>
+</html>

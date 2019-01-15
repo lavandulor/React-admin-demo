@@ -1,0 +1,98 @@
+@import '../../style/default.less';
+
+.handle-table{
+    width: 100%;
+    padding: 10px 10px;
+    .btn-wrap{
+        background-color: @colorL;
+        .ant-card-body{
+            padding: 10px 0 0;
+        }
+    }
+}
+
+.handle-container{
+    padding: 0 10px;
+    display: flex;
+    .table-wrap{
+        flex: 1
+    }
+    .detail-wrap{
+        width: 25%;
+        position: relative;
+        background-color: @colorM;
+        margin-left: 10px;
+        .detail-arrow{
+            position: absolute;
+            width: 18px;
+            height: 50px;
+            top: 50px;
+            left: -18px;
+            background: url("../../images/homePage/jiao1.png") 0 center no-repeat;
+            z-index: 100;
+        }
+        .handle-base-info{
+            height: calc(~'100vh - 262px');
+            background-color: @colorM;
+            overflow: auto;
+        }
+        .btn-wrap{
+            background-color: @colorD;
+            height: 36px;
+            width: 95%;
+            margin: 15px auto 10px;
+            .btn{
+                display: inline-block;
+                width: 49%;
+                line-height: 36px;
+                text-align: center;
+                cursor: pointer;
+                color: @colorM;
+            }
+            .line{
+                margin: 0px;
+            }
+        }
+    }
+}
+
+.ant-drawer{
+    z-index: 990
+}
+
+.handle-detail-drawer{
+    .ant-drawer-content-wrapper{
+        top: 201px;
+        height: calc(~'100vh - 201px');
+        .ant-drawer-body{
+            height: 100%;
+            padding: 5px;
+            .handle-content{
+                // height: 100%;
+                position: relative;
+                .handle-base-info{
+                    height: calc(~'100vh - 262px');
+                    background-color: @colorM;
+                    overflow: auto;
+                }
+                .btn-wrap{
+                    background-color: @colorD;
+                    height: 36px;
+                    width: 95%;
+                    margin: 15px auto 0;
+                    .btn{
+                        display: inline-block;
+                        width: 49%;
+                        line-height: 36px;
+                        text-align: center;
+                        cursor: pointer;
+                        color: @colorM;
+                    }
+                    .line{
+                        margin: 0px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -15,26 +15,16 @@ ul, li{
 }
 
 .container{
-    display: flex;
-    .nav-left{
-        background-color: @colorR;
-        color: @colorM;
-        min-width: 180px;
-        height: 100vh;
-    }
     .main{
-        height: 100vh;
+        width: 100%;
+        height: calc(~ "100vh - 50px");
         background-color: @colorL;
         overflow: auto;
-    }
-    .content{
-        position: relative;
-        padding: 20px;
     }
 }
 
 .content-wrap{
-    background: #ffffff;
+    background: @colorM;
     border: 1px solid #e8e8e8;
     margin-top: -2px;
     .ant-table-wrapper{

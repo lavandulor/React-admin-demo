@@ -1,0 +1,324 @@
+@import './../../../style/default.less';
+.police-detail-wrap{
+    background-color: #080e1d;
+    width: 100%;
+    height: calc(~"100vh - 50px");
+    font-size: @font14;
+    background: url("../../../images/policePage/bg.png") no-repeat;
+    background-size: 100% 100%;
+    position: relative; 
+}
+
+.return-btn{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 38px;
+    height: 30px;
+    background: url("../../../images/policePage/button-houtui.png") no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    &:hover{
+        background: url("../../../images/policePage/button-houtui-on.png") no-repeat;
+        background-size: 100% 100%;
+    }
+}
+
+.top-wrap{
+    display: flex;
+    flex-direction: row;
+    padding-top: 80px;
+    justify-content: center;
+    .top-left-wrap{
+        width: 38%;
+        height: 40vh;
+        margin-right: 2%;
+        background: url("../../../images/policePage/bg1.png") no-repeat;
+        background-size: 100% 100%; 
+        position: relative;
+        .info-bg{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 12vh;
+            background: url("../../../images/policePage/bg1-guanxiao.png") no-repeat;
+            background-size: 100% 100%; 
+        }
+        .ant-card{
+            height: 100%;
+            background: rgba(255, 255, 255, 0);
+            .ant-card-body{
+                height: 100%;
+                padding: 16px 5px 0 16px;
+                .ant-card-meta{
+                    height: 100%;
+                    .ant-card-meta-detail{
+                        height: 100%;
+                        overflow: auto;
+                        position: relative;
+                        &::-webkit-scrollbar {
+                            /*滚动条整体样式*/
+                            width: 4px;
+                            /*高宽分别对应横竖滚动条的尺寸*/
+                            height: 4px;
+                        }
+                        &::-webkit-scrollbar-thumb {
+                            /*滚动条里面小方块*/
+                            border-radius: 5px;
+                            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+                            background: rgba(69, 79, 99, 0.2);
+                        }
+                        &::-webkit-scrollbar-track {
+                            /*滚动条里面轨道*/
+                            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+                            border-radius: 0;
+                            background: rgba(0, 0, 0, 0.1);
+                        }
+                    }
+                }
+            }
+            .ant-avatar{
+                width: 152px;
+                height: 212px;
+            }
+            .ant-card-meta-title{
+                color: @colorM;
+                margin-top: 20px;
+                font-size: 0;
+                .police-info {
+                    height: 100%;
+                    div{
+                        margin-bottom: 4%;
+                        font-size: @font16;
+                        &.police-name{
+                            font-size: @font18;
+                        }
+                        &.medal{
+                            position: absolute;
+                            top: 20px;
+                            right: 50px;
+                            display: inline-block;
+                            width: 27px;
+                            height: 38px;
+                            &.gold-medal{
+                                background: url("../../../images/policePage/medal_gold.png") no-repeat;
+                                background-size: 100% 100%; 
+                            }
+                            &.bronze-medal{
+                                background: url("../../../images/policePage/medal_bronze.png") no-repeat;
+                                background-size: 100% 100%; 
+                            }
+                            &.silver-medal{
+                                background: url("../../../images/policePage/medal_silver.png") no-repeat;
+                                background-size: 100% 100%; 
+                            }
+                        }
+                        & .label{
+                            font-size: @font16;
+                            color: #88B1FC;
+                        }
+                        .num-box{
+                            display: flex;
+                            justify-content: center;
+                            .num-item{
+                                background-color: #0e0e2e;
+                                color: #eaac65;
+                                border: 1px solid #2b4a71;
+                                font-size: @font20;
+                                font-weight: bold;
+                                margin-right: 16px;
+                                height: 32px;
+                                width: 32px;
+                                text-align: center;
+                            }
+                            :last-child{
+                                margin-right: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .top-right-wrap{
+        width: 46%;
+        height: 40vh;
+        position: relative;
+        .bg-wrap{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+            background: url("../../../images/policePage/bg2.png") no-repeat;
+            background-size: 100% 100%;
+            z-index: 100;
+            //穿透该层
+            pointer-events:none;
+        }
+        .min-map-container{
+            width: 100%;
+            height: 100%;
+        }
+        .data-float-layer{
+            position: absolute;
+            top: 20px;
+            left: 16px;
+            width: 110px;
+            height: calc(~"40vh - 40px");
+            background: rgba(255, 255, 255, .12);
+            .title{
+                margin-top: 20px;
+                margin-left: 18px;
+                font-size: @font14;
+                color: @colorM;
+            }
+            .num-box{
+                margin-left: 18px;
+                font-size: 26px;
+                color: #eaac65;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
+
+.bottom-wrap{
+    display: flex;
+    flex-direction: row;
+    padding-top: 40px;
+    justify-content: center;
+    .bottom-left-wrap{
+        width: 23%;
+        height: 24vh;
+        margin-right: 1.1%;
+        .bottom-wrap-title {
+            width: 100%;
+            height: 26px;
+            line-height: 26px;
+            background: url("../../../images/policePage/bg3-title.png") no-repeat;
+            background-size: 100% 100%;
+            font-size: 14px;
+            color: @colorM;
+            padding-left: 13px;
+        }
+        .bottom-wrap-content{
+            width: 100%;
+            height: calc(~"24vh - 36px");
+            margin-top: 10px;
+            background: url("../../../images/policePage/bg3.png") no-repeat;
+            background-size: 100% 100%;
+        }
+    }
+    .bottom-center-wrap{
+        width: 29%;
+        height: 24vh;
+        margin-right: 1.1%;
+        .bottom-wrap-title {
+            width: 100%;
+            height: 26px;
+            line-height: 26px;
+            background: url("../../../images/policePage/bg4-title.png") no-repeat;
+            background-size: 100% 100%;
+            font-size: 14px;
+            color: @colorM;
+            padding-left: 13px;
+        }
+        .bottom-wrap-content{
+            width: 100%;
+            height: calc(~"24vh - 36px");
+            margin-top: 10px;
+            background: url("../../../images/policePage/bg4.png") no-repeat;
+            background-size: 100% 100%;
+
+        }
+    }
+    .bottom-right-wrap{
+        width: 32%;
+        height: 24vh;
+        .bottom-wrap-title {
+            width: 100%;
+            height: 26px;
+            line-height: 26px;
+            background: url("../../../images/policePage/bg5-title.png") no-repeat;
+            background-size: 100% 100%;
+            font-size: 14px;
+            color: @colorM;
+            padding-left: 13px;
+        }
+        .bottom-wrap-content{
+            width: 100%;
+            height: calc(~"24vh - 36px");
+            margin-top: 10px;
+            background: url("../../../images/policePage/bg5.png") no-repeat;
+            background-size: 100% 100%;
+            .title{
+                height: 42px;
+                line-height: 42px;
+                color: #e2953b;
+                span{
+                    display: inline-block;
+                    text-align: center;
+                    &:nth-child(1){
+                        width: 21%;
+                    } 
+                    &:nth-child(2){
+                        width: 11%;
+                    } 
+                    &:nth-child(3){
+                        width: 50%;
+                    } 
+                    &:nth-child(4){
+                        width: 18%;
+                    } 
+                }
+            }
+            .rollBox{
+                width: 100%;
+                height: calc(~"24vh - 78px");
+                overflow: hidden;
+                .rollEl{
+                    width: 100%;
+                    padding: 0;
+                    .rollChild{
+                        width: 100%;
+                        height: 30px;
+                        line-height: 30px;
+                        color: #ffffff;
+                        span{
+                            display: inline-block;
+                            text-align: center;
+                            &:nth-child(1){
+                                width: 21%;
+                                white-space:nowrap; 
+                                text-overflow:ellipsis;
+                                overflow: hidden;
+                            } 
+                            &:nth-child(2){
+                                width: 11%;
+                                white-space:nowrap; 
+                                text-overflow:ellipsis;
+                                overflow: hidden;
+                            } 
+                            &:nth-child(3){
+                                width: 50%;
+                                white-space:nowrap; 
+                                text-overflow:ellipsis;
+                                overflow: hidden;
+                            } 
+                            &:nth-child(4){
+                                width: 18%;
+                                white-space:nowrap; 
+                                text-overflow:ellipsis;
+                                overflow: hidden;
+                            } 
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

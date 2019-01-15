@@ -122,7 +122,7 @@ export default class ETable extends React.Component {
         }
         return <Table
                 className="card-wrap page-table"
-                bordered
+                bordered={false}
                 {...this.props}
                 rowSelection = {row_selection?rowSelection:null}
                 onRow={(record, index) => ({

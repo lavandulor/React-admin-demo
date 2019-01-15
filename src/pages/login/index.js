@@ -1,32 +1,56 @@
 import React from 'react'
-import {Form, Input, Button} from 'antd'
+import {Form, Input, Button, Icon} from 'antd'
+import { withRouter } from 'react-router-dom';
+import MD5 from 'js-md5';
+import axios from '../../axios/index'
 import Footer from '../../components/Footer'
 import './index.less'
 const FormItem = Form.Item;
 
-export default class Login extends React.Component {
+class Login extends React.Component {
     state = {};
 
     componentDidMount() {//每次进入登录页清除之前的登录信息
-        
+        sessionStorage.removeItem('admin_user');
+        document.addEventListener("keydown",this.handleEnterKey);
+    }
+
+    componentWillUmount(){
+        document.removeEventListener("keydown",this.handleEenterKey);
     }
 
     loginReq = (params) => {
-        window.location.href = '/#/';
+        console.log(params)
+        const userName = params.username;
+        const userPwd = MD5(params.password);
+        axios.ajax({
+            url: '/user/login.np',
+            data: {
+                params: {
+                    userName, userPwd
+                }
+            },
+            method: 'POST',
+        }).then((res) => {
+            if(res.state === 0){
+                console.log(res);
+                if(res.data != null){
+                    sessionStorage.setItem('admin_user', JSON.stringify(res.data));
+                    this.props.history.push('/home');
+                }
+            }
+        })
     };
+
+
 
     render() {
         return (
             <div className="login-page">
-                <div className="login-header">
-                    <div className="logo">
-                        <img src="/assets/logo-ant.svg" alt="后台管理系统"/>
-                        React全家桶+AntD 项目后台管理系统
-                    </div>
-                </div>
+                <div className="login-header-wrap">主动勤务后台管理系统</div>
                 <div className="login-content-wrap">
                     <div className="login-content">
-                        <div className="word">乐享出行 <br />引领城市新经济</div>
+                        <div className="image-box"></div>
                         <div className="login-box">
                             <div className="error-msg-wrap">
                                 <div
@@ -34,9 +58,13 @@ export default class Login extends React.Component {
                                     {this.state.errorMsg}
                                 </div>
                             </div>
-                            <div className="title">交通宝后台管理系统</div>
-                            <LoginForm ref="login" loginSubmit={this.loginReq}/>
+                            <div className="title">主动勤务后台管理系统</div>
+                            <LoginForm ref="login" loginSubmit={this.loginReq} wrappedComponentRef={(inst) => this.roleForm = inst}/>
                         </div>
+                    </div>
+                    <div className="bottom-shadow-wrap">
+                        <div className="shadow-box" style={{marginRight: 178, marginLeft: 100}}></div>
+                        <div className="shadow-box" style={{marginLeft: 170}}></div>
                     </div>
                 </div>
                 <Footer/>
@@ -45,8 +73,18 @@ export default class Login extends React.Component {
     }
 }
 
+export default withRouter(Login)
+
 class LoginForm extends React.Component {
     state = {};
+
+    componentDidMount() {
+        document.addEventListener("keydown",this.handleEnterKey);
+    }
+    
+    componentWillUmount(){
+        document.removeEventListener("keydown",this.handleEenterKey);
+    }
 
     loginSubmit = (e)=> {
         e && e.preventDefault();
@@ -61,6 +99,12 @@ class LoginForm extends React.Component {
             }
         });
     };
+
+    handleEnterKey = (e) => {
+        if(e.keyCode === 13){
+            this.loginSubmit()
+        }
+    }
 
     checkUsername = (rule, value, callback) => {
         var reg = /^\w+$/;
@@ -90,7 +134,7 @@ class LoginForm extends React.Component {
                         initialValue:'',
                         rules: [{validator: this.checkUsername}]
                     })(
-                        <Input placeholder="请输入账号"/>
+                        <Input style={{height: 47}} prefix={<Icon type="user" style={{fontSize: '20px', marginRight: 10}} />} placeholder="请输入账号"/>
                     )}
                 </FormItem>
                 <FormItem>
@@ -98,16 +142,15 @@ class LoginForm extends React.Component {
                         initialValue:'',
                         rules: [{validator: this.checkPassword}]
                     })(
-                        <Input type="password" placeholder="请输入密码" wrappedcomponentref={(inst) => this.pwd = inst } />
+                        <Input style={{height: 47}} type="password" prefix={<Icon type="lock" style={{fontSize: '20px', marginRight: 10}} />} placeholder="请输入密码"/>
                     )}
                 </FormItem>
                 <FormItem>
-                    <Button type="primary" onClick={this.loginSubmit} className="login-form-button">
-                        登录
-                    </Button>
+                    <Button type="primary" onClick={this.loginSubmit} className="login-form-button" style={{height: 50}}>登录</Button>
                 </FormItem>
             </Form>
         )
     }
 }
+
 LoginForm = Form.create({})(LoginForm);

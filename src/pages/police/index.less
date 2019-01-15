@@ -1,0 +1,235 @@
+@import '../../style/default.less';
+
+.police-wrap{
+    margin: 10px 12px 0;
+    .police-data-wrap{
+        margin-top: 8px;
+        .ant-card-body{
+            padding: 0;
+            height: 73px;
+            line-height: 73px;
+            .left-wrap{
+                height: 73px;
+                text-align: center;
+                border-right: 1px solid @colorN;
+                .police-count-icon{
+                    display: inline-block;
+                    width: 42px;
+                    height: 42px;
+                    background: url("../../images/policePage/jinyuanzhongshu.png") no-repeat;
+                    background-size: 42px 42px; 
+                    vertical-align: middle;
+                    margin: 0 20px 15px 0;
+                }
+                .event-count-icon{
+                    display: inline-block;
+                    width: 42px;
+                    height: 42px;
+                    background: url("../../images/policePage/shangbaozongl.png") no-repeat;
+                    background-size: 42px 42px; 
+                    vertical-align: middle;
+                    margin: 0 20px 15px 0;
+                }
+                .title{
+                    font-size: @font14;
+                    color: #666666;
+                }
+                .num-wrap{
+                    color: #002273;
+                    font-weight: bold;
+                    .num{
+                        font-size: 30px;
+                    }
+                }
+            }
+            .center-wrap{
+                border-right: 1px solid @colorN;
+                .item{
+                    height: 73px;
+                    line-height: 1;
+                    text-align: center;
+                    position: relative;
+                    &::after{
+                        position: absolute;
+                        right: 0;
+                        top: 25px;
+                        content: '';
+                        height: 25px;
+                        width: 0;
+                        border-right: 1px solid #ededed;
+                    }
+                    &:last-child{
+                        &::after{
+                            border-right: none;
+                        }
+                    }
+                    .num{
+                        display: inline-block;
+                        margin-top: 14px;
+                        font-size: 25px;
+                        font-weight: bold;
+                        &.color1{
+                            color: #fc8040;
+                        }
+                        &.color2{
+                            color: #4c77dd;
+                        }
+                        &.color3{
+                            color: #70cab5;
+                        }
+                    }
+                    .title{
+                        line-height: 1;
+                        margin-top: 10px;
+                    }
+                }
+            }
+            .right-wrap{
+                .item{
+                    height: 73px;
+                    line-height: 1;
+                    text-align: center;
+                    color: #666666;
+                    &::after{
+                        position: absolute;
+                        right: 0;
+                        top: 25px;
+                        content: '';
+                        height: 25px;
+                        width: 0;
+                        border-right: 1px solid #ededed;
+                    }
+                    &:last-child{
+                        &::after{
+                            border-right: none;
+                        }
+                    }
+                    .num{
+                        display: inline-block;
+                        margin-top: 14px;
+                        font-size: 25px;
+                        font-weight: bold;
+                    }
+                    .title{
+                        line-height: 1;
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .police-list-wrap{
+        margin-top: 50px;
+        .ant-list-item{
+            margin-bottom: 50px;
+            .ant-card{
+                border-radius: 8px;
+            }
+            .ant-card-cover{
+                position: relative;
+                .police-info{
+                    padding: 14px 0 0 10px;
+                    color: @colorR;
+                    font-size: 0;
+                    .police-base-info{
+                        display: flex;
+                        .police-photo{
+                            width: 72px;
+                            height: 77px;
+                            position: absolute;
+                            top: -12px;
+                        }
+                        .police-name{
+                            flex: 1;
+                            margin-left: 82px;
+                            font-size: @font14;
+                            font-weight: bold;
+                            .level{
+                                font-size: @font12;
+                                font-weight: normal;
+                            }
+                        }
+                    }
+                    .police-dept{
+                        font-size: @font12;
+                        margin-top: 14px;
+                    }
+                }
+            }
+            .ant-card-body{
+                font-size: 0;
+                padding: 16px 10px;
+                .police-handle-num{
+                    position: relative;
+                    .title{
+                        font-size: @font12;
+                        color: @colorV;
+                    }
+                    .totalnum{
+                        font-size: @font12;
+                        color: @colorT;
+                        span{
+                            font-size: @font20;
+                            font-weight: bold;
+                        }
+                    }
+                    .medal{
+                        position: absolute;
+                        top: 10px;
+                        right: 5px;
+                        display: inline-block;
+                        width: 20px;
+                        height: 27px;
+                        &.gold-medal{
+                            background: url("../../images/policePage/medal_gold.png") no-repeat;
+                            background-size: 100% 100%; 
+                        }
+                        &.bronze-medal{
+                            background: url("../../images/policePage/medal_bronze.png") no-repeat;
+                            background-size: 100% 100%; 
+                        }
+                        &.silver-medal{
+                            background: url("../../images/policePage/medal_silver.png") no-repeat;
+                            background-size: 100% 100%; 
+                        }
+                    }
+                }
+                .police-handle-class{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    .item{
+                        width: 66px;
+                        box-shadow: 0px 0px 20px 5px rgba(99,99,99,.1);
+                        border-radius: 5px;
+                        text-align: center;
+                        padding: 0 4px 4px;
+                        font-size: 0;
+                        .num{
+                            font-size: @font14;
+                            color: @colorP;
+                            font-weight: bold;
+                            margin-top: 6px;
+                        }
+                        .item-class{
+                            margin-top: 5px;
+                            font-size: 10px;
+                            &.class1{
+                                border-bottom: 2px solid #fc8040;
+                            }
+                            &.class2{
+                                border-bottom: 2px solid #4C77DD;
+                            }
+                            &.class3{
+                                border-bottom: 2px solid #3CBDA1;
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+        .ant-list-pagination{
+            margin-top: 0px;
+        }
+    }
+}

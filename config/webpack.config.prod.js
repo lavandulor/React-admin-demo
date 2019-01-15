@@ -210,6 +210,15 @@ module.exports = {
                         ],
                       },
                     },
+                    {
+                      loader: require.resolve('less-loader'),
+                      options: {
+                        modules: false,
+                        modifyVars: {
+                          "@primary-color": "#1C6EEC"
+                        }
+                      }
+                    }
                   ],
                 },
                 extractTextPluginOptions

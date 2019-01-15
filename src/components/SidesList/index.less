@@ -1,0 +1,170 @@
+@import './../../style/default.less';
+.info-drawer{
+    .ant-drawer-content-wrapper{
+        box-shadow: 0 0 0 0 !important;
+        top: 60px;
+        height: calc(~'100vh - 285px');
+        .ant-drawer-content{
+            background-color: @colorC;
+            color: @colorM;
+            width: 246px;
+            height: calc(~'100vh - 285px');
+            position: absolute;
+            left: 7px;
+            box-shadow: 0px 0px 20px 5px #1F3354 inset;
+            border: 1px solid @colorG;
+            .ant-drawer-wrapper-body{
+                &::-webkit-scrollbar {
+                    /*滚动条整体样式*/
+                    width: 4px;
+                    /*高宽分别对应横竖滚动条的尺寸*/
+                    height: 4px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    /*滚动条里面小方块*/
+                    border-radius: 5px;
+                    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+                    background: rgba(69, 79, 99, 0.2);
+                }
+                &::-webkit-scrollbar-track {
+                    /*滚动条里面轨道*/
+                    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+                    border-radius: 0;
+                    background: rgba(0, 0, 0, 0.1);
+                }
+                .ant-drawer-body{
+                    padding: 0;
+                    display: flex;
+                    ul{
+                        padding: 0
+                    }
+                    .fade-enter,
+                    .fade-appear {
+                        transform: translateX(-200px);
+                        opacity: 0.01;
+                    }
+                    .fade-enter-active,
+                    .fade-apper-active {
+                        transform: translateX(0);
+                        opacity: 1;
+                        transition: all 500ms ease-in-out;
+                    }
+                    .fade-enter-done {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    .fade-exit {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    .fade-exit-active {
+                        transition: all 500ms ease-in;
+                        opacity: 0;
+                        transform: translateX(-240px);
+                    }
+                    .fade-exit-done {
+                        opacity: 0;
+                        transform: translateX(-240px);
+                    }
+                    .list-item{
+                        width: 240px;
+                        height: 145px;
+                        padding: 0px;
+                        color: @colorM !important;
+                        position: relative;
+                        &.active{
+                            background: #1F2A3E;
+                            box-shadow: 0px 0px 20px 5px #2c4161 inset;
+                        }
+                        .info-item{
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            font-size: 0;
+                            cursor: pointer;
+                            .left-wrap{
+                                width: 16px;
+                                text-align: center;
+                                .red-point{
+                                    display: inline-block;
+                                    width: 5px;
+                                    height: 5px;
+                                    border-radius: 50%;
+                                    background-color: @colorB;
+                                    margin-top: 24px;
+                                }
+                            }
+                            .right-wrap{
+                                flex: 1;
+                                font-size: @font12;
+                                border-bottom: 1px solid #4B5363;
+                                .info-text{
+                                    margin-bottom: 11px;
+                                    width: 215px;
+                                    overflow: hidden; /*自动隐藏文字*/
+                                    text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+                                    white-space: nowrap;/*强制不换行*/
+                                    line-height: 1;
+                                    .icon-type-1{
+                                        display: inline-block;
+                                        width: 15px;
+                                        height: 13px;
+                                        background: url('../../images/homePage/yichanglukou.png') no-repeat;
+                                        background-size: 100% 100%; 
+                                        margin-right: 8px;
+                                    }
+                                    .icon-type-2{
+                                        display: inline-block;
+                                        width: 15px;
+                                        height: 17px;
+                                        background: url('../../images/homePage/shijianchuli.png') no-repeat;
+                                        background-size: 100% 100%; 
+                                        margin-right: 8px;
+                                    }
+                                    .icon-type-3, .icon-type-4{
+                                        display: inline-block;
+                                        width: 15px;
+                                        height: 16px;
+                                        background: url('../../images/homePage/guzhangshangbao.png') no-repeat;
+                                        background-size: 100% 100%; 
+                                        margin-right: 8px;
+                                    }
+                                    &:nth-child(1){
+                                        margin-top: 18px;
+                                        color: #eaac65;
+                                        font-size: 14px;
+                                    }
+                                    .level{
+                                        margin-left: 10px; 
+                                    }
+                                }
+                            }
+                        }
+                        .icon-level-0{
+                            position: absolute;
+                            top: 0px;
+                            right: 0px;
+                            height: 42px;
+                            width: 43px;
+                        }
+                        .icon-level-1{
+                            position: absolute;
+                            top: 0px;
+                            right: 0px;
+                            height: 42px;
+                            width: 43px;
+                            background: url("../../images/homePage/wangcheng.png") no-repeat;
+                        }
+                    }
+                    .ant-list-empty-text{
+                        width: 246px;
+                        text-align: center;
+                        color: @colorM;
+                    }
+                }
+            }
+        }
+    }
+}
+
+

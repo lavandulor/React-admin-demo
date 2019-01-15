@@ -1,25 +1,48 @@
 import React from 'react'
-import { Row, Col} from 'antd'
+import { Row, Col, Icon, Divider} from 'antd'
+import { Redirect } from 'react-router-dom'
 import './index.less'
 import Util from '../../utils/utils'
 import axios from '../../axios/index'
+import NavTop from '../NavTop/index'
 import { connect } from 'react-redux'
+import LogoImage from '../../images/homePage/logo.png'
+import UserImage from '../../images/homePage/icon_username.png'
 
 class Header extends React.Component{
     state = {}
     componentWillMount() {
-        this.setState({
-            userName: "Gawain"
-        })
+        let  isAuthenticated =  sessionStorage.getItem("admin_user") ? true :false;
+        this.setState({isAuthenticated:isAuthenticated})
+        if(!isAuthenticated){
+            this.loginOut();
+        }else{
+            var user = JSON.parse(sessionStorage.getItem('admin_user'))
+            this.setState({
+                userName: user.userName,
+                unitName: user.unitName
+            })
+        }
 
-        setInterval(()=>{
+        this.timeInterval = setInterval(()=>{
             let sysTime = Util.formateDate(new Date().getTime());
             this.setState({
                 sysTime
             })
         },1000)
+        
+        // this.getWeatherAPIData()
+    }
 
-        this.getWeatherAPIData()
+    loginOut() {
+        sessionStorage.removeItem('admin_user')
+        this.setState({
+            redirect: true
+        });
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timeInterval)
     }
 
     getWeatherAPIData(){
@@ -39,38 +62,26 @@ class Header extends React.Component{
     }
 
     render(){
-        const menuType = this.props.menuType;
+        if (this.state.redirect) {
+            return <Redirect push to="/login" />; 
+        }
         return (
             <div className="header">
-                <Row className="header-top">
-                    {
-                        menuType?                    
-                            <Col span="6" className="logo">
-                                <img src="/assets/logo-ant.svg" alt="" />
-                                <span>JTbao 通用管理系统</span>
-                            </Col>: ''
-                    }
-                    <Col span={menuType?18:24}>
-                        <span>欢迎，{this.state.userName}</span>
-                        <a>退出</a>
+                <Row className="header-top">                
+                    <Col span={5} className="logo">
+                        <img src={LogoImage} alt="" />
+                        <span>主动勤务后台管理系统</span>
+                    </Col>
+                    <Col span={14}>
+                        <NavTop />
+                    </Col>
+                    <Col span={5} className="header-right">
+                        <img src={UserImage} alt="" />
+                        <span>{this.state.userName}&nbsp;&nbsp;单位：{this.state.unitName}</span>
+                        <Divider type="vertical" />
+                        <Icon type="poweroff" onClick={()=>this.loginOut()}/>
                     </Col>
                 </Row>
-                {
-                    menuType?'':
-                        <Row className="breadcrumb">
-                            <Col span="4" className="breadcrumb-title">
-                                { this.props.menuName || '首页' }
-                            </Col>
-                            <Col span="20" className="weather">
-                                <span className="date">{this.state.sysTime}</span>
-                                <span className="weather-img">
-                                    <img src={this.state.dayPictureUrl} alt=""/>
-                                </span>
-                                <span className="weather-detail">{this.state.weather}  {this.state.temperature}</span>
-                            </Col>
-                        </Row>
-                }
-
             </div>
         );
     }

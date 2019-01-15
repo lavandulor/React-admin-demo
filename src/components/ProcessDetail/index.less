@@ -1,0 +1,171 @@
+@import './../../style/default.less';
+.process-wrap {
+    &.index{
+        .process-title{
+            height: 35px;
+            line-height: 35px;
+            border-bottom: 1px solid @colorG;
+            margin: 0px 5px 0 8px;
+            margin-bottom: 10px;
+            .anticon-rollback{
+                float: right;
+                margin-right: 16px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+        }
+    }
+    .ant-steps-item{
+        margin-bottom: 5px;
+        .icon-report{
+            width: 24px;
+            height: 24px;
+            background: url('../../images/homePage/biaoshi2.png') center center no-repeat;
+        }
+        .icon-process{
+            width: 24px;
+            height: 24px;
+            background: url('../../images/homePage/biaoshi1.png') center center no-repeat;
+        }
+        .icon-finish{
+            width: 24px;
+            height: 24px;
+            background: url('../../images/homePage/biaoshi3.png') center center no-repeat;
+        }
+        .ant-steps-item-content{
+            position: relative;
+            .ant-steps-item-title{
+                width: 100%;
+                color: @colorM !important;
+                font-size: @font12;
+                .icon-level-0{
+                    position: absolute;
+                    top: 0;
+                    right: 5px;
+                    height: 26px;
+                    width: 26px;
+                    background: url("../../images/homePage/level-di.png") no-repeat;
+                }
+                .icon-level-1{
+                    position: absolute;
+                    top: 0;
+                    right: 5px;
+                    height: 26px;
+                    width: 26px;
+                    background: url("../../images/homePage/level-zhong.png") no-repeat;
+                }
+                .icon-level-2{
+                    position: absolute;
+                    top: 0;
+                    right: 5px;
+                    height: 26px;
+                    width: 26px;
+                    background: url("../../images/homePage/level-gao.png") no-repeat;
+                }
+            }
+            .ant-steps-item-description{
+                color: @colorM !important;
+                font-size: @font12; 
+                border-bottom: 1px solid @colorY;
+                .media-info{
+                    .info-photo{
+                        margin-top: 10px;
+                        .figure-list{
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .figure-list:after{
+                            content: "";
+                            display: block;
+                            clear: both;
+                            height: 0;
+                            overflow: hidden;
+                            visibility: hidden;
+                        }
+                        .figure-list li{
+                            list-style: none;
+                            float: left;
+                            width: 30%;
+                            margin: 0 2% 2% 0;
+                        }
+                        .figure-list figure{
+                            position: relative;
+                            width: 100%;
+                            height: 0;
+                            overflow: hidden;
+                            margin: 0;
+                            padding-bottom: 100%; /* 关键就在这里 */
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                        }
+                        .figure-list img{
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            top: 0;
+                            bottom: 0;
+                        }
+                    }
+                }   
+            }
+        }
+    }
+    &.handle{
+        .process-title{
+            font-size: @font16;
+            color: @colorW;
+            border-bottom: 1px solid @colorU;
+            padding: 10px 0 10px 10px;
+            margin-bottom: 10px;
+            .anticon-rollback{
+                float: right;
+                font-size: 18px;
+                margin-right: 16px;
+                margin-left: 0px;
+                margin-top: 5px;
+                cursor: pointer;
+            }
+        }
+        .ant-steps-item-content{
+            position: relative;
+            margin-top: 10px;
+            .ant-steps-item-title{
+                color: @colorS !important;
+                font-size: @font16;
+                .base-info div{
+                    padding: 6px 0;
+                }
+                .icon-level-0{
+                    position: absolute;
+                    top: 4px;
+                    right: 22px;
+                }
+                .icon-level-1{
+                    position: absolute;
+                    top: 4px;
+                    right: 22px;
+                }
+                .icon-level-2{
+                    position: absolute;
+                    top: 4px;
+                    right: 22px;
+                }
+            }
+            .ant-steps-item-description{
+                color: @colorS !important;
+                font-size: @font16; 
+                border-bottom: 1px solid @colorU;
+                .media-info{
+                    .info-photo{
+                        .photo-item{
+                            width: 30%;
+                            height: 80px;
+                            margin: 0 5px 8px 0;
+                        }
+                    }
+                } 
+            }
+        }
+    }
+}

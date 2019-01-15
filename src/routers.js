@@ -1,78 +1,62 @@
 import React from 'react'
 import { HashRouter, Route, Switch, Redirect} from 'react-router-dom'
+import { LocaleProvider } from 'antd';
+import zh_CN from 'antd/lib/locale-provider/zh_CN';
+import 'moment/locale/zh-cn';
 import App from './App'
 import Login from './pages/login'   
 import Admin from './admin'
 import Home from './pages/home'
-import Buttons from './pages/ui/buttons'
-import Modals from './pages/ui/modals'
-import Loadings from './pages/ui/loadings'
-import Notice from './pages/ui/notice';
-import Messages from './pages/ui/messages';
-import Tab from './pages/ui/tabs';
-import Gallerys from './pages/ui/gallery';
-import Carousels from './pages/ui/carousel';
-import FormLogin from './pages/form/login';
-import FormRegister from './pages/form/register';
-import BasicTable from './pages/table/basicTable';
-import HighTable from './pages/table/highTable';
-import City from './pages/city/index';
-import Order from './pages/order/index';
-import User from './pages/user';
-import BikeMap from './pages/map/bikeMap'
-import Bar from './pages/charts/bar/index'
-import Pie from './pages/charts/pie/index'
-import Line from './pages/charts/line/index'
-import RichText from './pages/rich/index'
-import Permission from './pages/permission'
+import Handle from './pages/handle'
+import Police from './pages/police'
+import PoliceDetail from './pages/police/detail'
+import Advice from './pages/advice'
+import Setting from './pages/setting'
+import User from './pages/setting/user';
+import Role from './pages/setting/role';
+import Daily from './pages/setting/daily';
 import NoMatch from './pages/nomatch';
 import Common from './common';
-import OrderDetail from './pages/order/detail';
 export default class IRouter extends React.Component{
-
+    
     render(){
         return (
             <HashRouter>
-                <App>
-                    <Switch>
-                        <Route path="/login" component={Login}/>
-                        <Route path="/common" render={()=>
-                            <Common>
-                                <Route path="/common/order/detail/:orderId" component={OrderDetail}/>
-                            </Common>
-                        }/>
-                        <Route path="/" render={()=>
-                            <Admin> 
-                                <Switch>
-                                    <Route path="/home" component={Home}/>
-                                    <Route path="/ui/buttons" component={Buttons}/>
-                                    <Route path="/ui/modals" component={Modals}/>
-                                    <Route path="/ui/loadings" component={Loadings}/>
-                                    <Route path="/ui/notification" component={Notice}/>
-                                    <Route path="/ui/messages" component={Messages}/>
-                                    <Route path="/ui/tabs" component={Tab}/>
-                                    <Route path="/ui/gallery" component={Gallerys}/>
-                                    <Route path="/ui/carousel" component={Carousels}/>
-                                    <Route path="/form/login" component={FormLogin}/>
-                                    <Route path="/form/reg" component={FormRegister}/>
-                                    <Route path="/table/basic" component={BasicTable}/>
-                                    <Route path="/table/high" component={HighTable}/>
-                                    <Route path="/rich" component={RichText}/>
-                                    <Route path="/city" component={City}/>
-                                    <Route path="/order" component={Order}/>
-                                    <Route path="/user" component={User}/>
-                                    <Route path="/bikeMap" component={BikeMap}/>
-                                    <Route path="/charts/bar" component={Bar}/>
-                                    <Route path="/charts/pie" component={Pie}/>
-                                    <Route path="/charts/line" component={Line}/>
-                                    <Route path="/permission" component={Permission}/>
-                                    <Redirect to="/home"/>
-                                    <Route component={NoMatch}/>
-                                </Switch>
-                            </Admin>
-                        }/>
-                    </Switch>
-                </App>
+                <LocaleProvider locale={zh_CN}>
+                    <App>
+                        <Switch>
+                            <Route path="/login" component={Login}/>
+                            <Route path="/common" render={()=>
+                                <Common>
+                                    <Route path="/common/police/detail/:policeId" component={PoliceDetail}/>
+                                </Common>
+                            }/>
+                            <Route path="/" render={()=>
+                                <Admin> 
+                                    <Switch>
+                                        <Route path="/home" component={Home}/>
+                                        <Route path="/handle" component={Handle}/>
+                                        <Route path="/police" component={Police}/>
+                                        <Route path="/advice" component={Advice}/>
+                                        <Route path="/setting" render={()=> 
+                                            <Setting>
+                                                <Switch>
+                                                    <Route path="/setting/user" component={User}/>
+                                                    <Route path="/setting/role" component={Role}/>
+                                                    <Route path="/setting/daily" component={Daily}/>
+                                                    {/* 设置页面往此处添加 */}
+                                                    <Redirect to="/setting/user"/>
+                                                </Switch>
+                                            </Setting>
+                                        }/>
+                                        <Redirect to="/login"/>
+                                        <Route component={NoMatch}/>
+                                    </Switch>
+                                </Admin>
+                            }/>
+                        </Switch>
+                    </App>
+                </LocaleProvider>
             </HashRouter>
         )
     }

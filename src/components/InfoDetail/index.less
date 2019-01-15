@@ -1,0 +1,139 @@
+@import './../../style/default.less';
+
+.info-detail{
+    font-size: 0px;
+    padding: 0 10px 0 14px;
+    // margin-bottom: 80px;
+    position: relative;
+    .info-title{
+        font-size: @font14;
+        color: @colorZ;
+        padding: 10px 0;
+        border-bottom: 1px solid @colorY;
+    }
+    .info-content{
+        font-size: @font12;
+        padding: 6px 0;
+        &:last-child{
+            margin-bottom: 6px;
+        }
+    }
+    .info-photo{
+        margin-top: 10px;
+        .figure-list{
+            margin: 0;
+            padding: 0;
+        }
+        .figure-list:after{
+            content: "";
+            display: block;
+            clear: both;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+        }
+        .figure-list li{
+            list-style: none;
+            float: left;
+            width: 30%;
+            margin: 0 2% 2% 0;
+        }
+        .figure-list figure{
+            position: relative;
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+            margin: 0;
+            padding-bottom: 100%; /* 关键就在这里 */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .figure-list img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+        }
+    }
+    .info-audio{
+        margin-top: 6px;
+    }
+    .info-process{
+        font-size: @font14;
+        border-bottom: 1px solid @colorY;
+        border-top: 1px solid @colorY;
+        height: 34px;
+        line-height: 34px;
+        margin-top: 15px;
+        cursor: pointer;
+        i{
+            float: right;
+            margin: 8px 5px 0;
+        }
+    }
+    .icon-level-0{
+        position: absolute;
+        top: 48px;
+        right: 14px;
+        height: 26px;
+        width: 26px;
+        background: url("../../images/homePage/level-di.png") no-repeat;
+    }
+    .icon-level-1{
+        position: absolute;
+        top: 48px;
+        right: 14px;
+        height: 26px;
+        width: 26px;
+        background: url("../../images/homePage/level-zhong.png") no-repeat;
+    }
+    .icon-level-2{
+        position: absolute;
+        top: 48px;
+        right: 14px;
+        height: 26px;
+        width: 26px;
+        background: url("../../images/homePage/level-gao.png") no-repeat;
+    }
+    &.index{
+        padding: 0;  
+    }
+    &.handle{
+        .info-title{
+            font-size: @font16;
+            color: @colorW;
+            border-bottom: 1px solid @colorU;
+            padding: 13px 0 12px;
+        }
+        .info-content{
+            font-size: @font16;
+            color: @colorS;
+        }
+        .info-process{
+            font-size: @font16;
+            color: @colorD;
+            border-bottom: 1px solid @colorU;
+            border-top: 1px solid @colorU;
+            height: 44px;
+            line-height: 44px;
+            i{
+                float: right;
+                margin: 15px 5px 0;
+            }
+        }
+        .icon-level-0{
+            top: 55px;
+            right: 14px;
+        }
+        .icon-level-1{
+            top: 55px;
+            right: 14px;
+        }
+        .icon-level-2{
+            top: 55px;
+            right: 14px;
+        }
+    }
+}

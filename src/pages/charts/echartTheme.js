@@ -1,8 +1,8 @@
 export default {
     "color": [
-        "#f9c700",
-        "#ff5400",
-        "#6699cc",
+        "#eccc1d",
+        "#1bcf39",
+        "#1e6adb",
         "#9cb3c5",
         "#e0e6ec",
         "#666666",
@@ -11,15 +11,23 @@ export default {
         "#724e58",
         "#4b565b"
     ],
-    "backgroundColor": "#ffffff",
-    "textStyle": {},
+    "backgroundColor": "#26282d",
+    "textStyle": {
+        "color": "#929292"
+    },
     "title": {
         "textStyle": {
             "color": "#cccccc"
         },
         "subtextStyle": {
             "color": "#cccccc"
-        }
+        },
+    },
+    "grid": {
+        "top": 40,
+        "bottom": 55,
+        "left": 40,
+        "right": 40,
     },
     "line": {
         "itemStyle": {
@@ -50,7 +58,7 @@ export default {
     },
     "categoryAxis": {
         "axisLine": {
-            "show": true,
+            "show": false,
             "lineStyle": {
                 "color": "#f1f3f5"
             }
@@ -136,7 +144,7 @@ export default {
     },
     "legend": {
         "textStyle": {
-            "color": "#333333"
+            "color": "#929292"
         }
     },
     "tooltip": {

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Card } from 'antd'
 import ReactEcharts from 'echarts-for-react'
 import echartTheme from '../echartTheme'
 // import echarts from 'echarts'
@@ -17,63 +16,43 @@ export default class Bar extends React.Component{
         echarts.registerTheme('JTbao', echartTheme)
     }
 
-    getOption() {
+    getOption(data) {
         let option ={
-            title: {
-                text: '用户骑行订单'
+            backgroundColor: "rgba(255,255,255,0)",
+            grid:{
+                bottom: 30
             },
             tooltip: {
                 trigger: 'axis'
             },
             xAxis: {
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                data: ['拥堵', '施工', '积水', '危险', '事故', '其他', '设备', '设施'],
+                splitLine: {show: false},
+                axisTick: {show: false}
             },
             yAxis: {
-                type: 'value'
+                type: 'value',
+                show: false,
+                splitLine: {show: false},
+                axisLine: {show: false},
+                axisTick: {show: false}
             },
             series: [
                 {
-                    name: '订单量',
+                    name: '上报量',
                     type: 'bar',
-                    data: [1000, 2000, 1500, 3000, 2000, 1200, 800]
-                }
-            ]
-        }
-        return option
-    }
-
-    getOption2() {
-        let option ={
-            title: {
-                text: '用户骑行订单'
-            },
-            legend: {
-                data: ['oFo', '摩拜', '小蓝']
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            xAxis: {
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [
-                {
-                    name: 'oFo',
-                    type: 'bar',
-                    data: [2000, 3000, 5500, 7000, 8000, 12000, 20000]
-                },
-                {
-                    name: '摩拜',
-                    type: 'bar',
-                    data: [1500, 3000, 4500, 6000, 8000, 10000, 15000]
-                },
-                {
-                    name: '小蓝',
-                    type: 'bar',
-                    data: [1000, 2500, 4000, 6000, 7000, 8000, 10000]
+                    barWidth: '20%',
+                    data: data,
+                    itemStyle:{
+                        color: '#1f73ec'
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        distance: 10,
+                        color: '#EAAC65',
+                        fontSize: 14
+                    }
                 }
             ]
         }
@@ -81,14 +60,10 @@ export default class Bar extends React.Component{
     }
 
     render() {
+        let {data} = this.props
         return (
-            <div>
-                <Card title="柱形图表之一">
-                    <ReactEcharts option={this.getOption()} theme="JTbao" style={{ height: 500 }}/>
-                </Card>
-                <Card title="柱形图表之二" style={{marginTop: 10}}>
-                    <ReactEcharts option={this.getOption2()} theme="JTbao" style={{ height: 500 }}/>
-                </Card>
+            <div style={{height: '100%'}}>
+                <ReactEcharts option={this.getOption(data)} theme="JTbao" style={{height: '100%'}}/>
             </div>
         )
     }

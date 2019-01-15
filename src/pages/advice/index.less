@@ -1,0 +1,42 @@
+@import './../../style/default.less';
+.advice-container{
+    display: flex;
+    .advice-table{
+        flex:1;
+        margin: 10px 10px;
+        .btn-wrap{
+            background-color: @colorL;
+        }
+    }
+    .advice-info{
+        width: 25%;
+        position: relative;
+        .advice-base-info{
+            height: calc(~'100vh - 80px');
+            background-color: @colorM;
+            overflow: auto;
+            margin: 10px 10px 10px 0;
+            border: 1px solid @colorO;
+            .advice-detail{
+                font-size: 0px;
+                padding: 0 10px 0 14px;
+                margin-bottom: 80px;
+                position: relative;
+                .advice-title{
+                    font-size: @font16;
+                    color: @colorW;
+                    padding: 10px 0;
+                    border-bottom: 1px solid @colorU;
+                }
+                .advice-content{
+                    font-size: @font16;
+                    color: @colorS;
+                    padding: 6px 0;
+                    &:last-child{
+                        margin: 15px 0;
+                    }
+                }
+            }
+        }
+    }
+}
